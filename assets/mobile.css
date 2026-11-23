@@ -1,0 +1,85 @@
+/* =========================================================
+   SGPR — Ajustements téléphone et tablette
+   Uniquement dans des media queries : l'affichage PC ne change pas.
+   ========================================================= */
+
+/* Pas de flash gris au toucher, texte non agrandi par le navigateur */
+html{-webkit-tap-highlight-color:rgba(10,10,90,.08)}
+
+@media(max-width:600px){
+
+  /* ---------- Barre du haut : compacte et centrée ---------- */
+  body .sgpr-shared-topbar{align-items:stretch!important;padding:8px 12px!important;gap:7px!important}
+  body .sgpr-shared-topbar .infos{justify-content:center!important;text-align:center!important;font-size:12px!important;gap:3px 14px!important}
+  body .sgpr-shared-topbar .infos span{white-space:nowrap!important}
+  body .sgpr-shared-topbar .devis{align-self:stretch!important;height:38px!important;min-height:38px!important;font-size:12px!important;letter-spacing:.3px!important}
+
+  /* ---------- Navbar : logo en haut, les 4 liens visibles en dessous ---------- */
+  body header.sgpr-shared-nav{flex-wrap:wrap!important;overflow:visible!important;justify-content:center!important;border-bottom:1px solid #eee!important}
+  body header.sgpr-shared-nav .logo{
+    flex:0 0 100%!important;width:100%!important;min-width:0!important;
+    height:62px!important;min-height:62px!important;max-height:62px!important;
+    border-bottom:1px solid #eee!important
+  }
+  body header.sgpr-shared-nav .logo img{width:140px!important;max-width:140px!important}
+  body header.sgpr-shared-nav>a:not(.logo){
+    flex:1 1 0!important;min-width:0!important;
+    height:48px!important;min-height:48px!important;max-height:48px!important;
+    padding:0 4px!important;font-size:11.5px!important;letter-spacing:.2px!important
+  }
+
+  /* ---------- Formulaires : 16 px évite le zoom automatique sur iPhone ---------- */
+  input,select,textarea{font-size:16px!important}
+
+  /* ---------- Textes trop petits ---------- */
+  .sgpr-about-me-text button,.contact-cta{font-size:13px!important}
+
+  /* ---------- Accueil ---------- */
+  .sgpr-about-me-card{min-height:0!important}
+  .sgpr-about-me-photo{min-height:230px!important}
+  .sgpr-about-me-content{padding:10px 22px 50px!important}
+
+  .sgprp-section{padding:60px 0!important}
+  .sgprp-hero{min-height:0!important;padding:90px 0 100px!important}
+  .sgprp-hero h1{font-size:35px!important;letter-spacing:-1.5px!important;margin-bottom:20px!important}
+  .sgprp-copy h2,.sgprp-heading-center h2{font-size:31px!important;letter-spacing:-1px!important}
+  .sgprp-copy p,.sgprp-heading-center p{font-size:16px!important}
+  .sgprp-media-card img,.sgprp-impact-image img{height:300px!important;border-radius:18px!important}
+  .sgprp-two-col{gap:34px!important}
+  .sgprp-heading-center{margin-bottom:34px!important}
+
+  /* Chiffres clés : 2 x 2 au lieu d'une longue colonne */
+  .sgprp-stats{padding:56px 0!important}
+  .sgprp-stat-grid{grid-template-columns:repeat(2,1fr)!important}
+  .sgprp-stat-grid>div{padding:22px 8px!important;border-right:0!important;border-bottom:0!important}
+  .sgprp-stat-grid>div:nth-child(odd){border-right:1px solid rgba(255,255,255,.15)!important}
+  .sgprp-stat-grid>div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.15)!important}
+  .sgprp-stat-grid strong{font-size:44px!important;letter-spacing:-1.5px!important;margin-bottom:8px!important}
+  .sgprp-stat-grid span{font-size:12px!important}
+
+  .sgprp-value-card{min-height:0!important;padding:26px 22px!important}
+  .sgprp-service-image{height:220px!important}
+  .sgprp-service-body{padding:22px!important}
+  .sgprp-team-card>img{height:300px!important}
+  .sgprp-testimonials{padding:64px 0!important}
+  .sgprp-testimonial{padding:26px!important}
+  .sgprp-partners{padding:56px 0 64px!important}
+
+  /* ---------- Contact : coordonnées bien alignées ---------- */
+  .left-side{align-items:flex-start!important;justify-content:center!important}
+  .details{flex:0 0 calc(50% - 30px)}
+  .details .icon{height:40px;line-height:40px;margin-bottom:6px!important}
+
+
+
+}
+
+/* Très petits téléphones */
+@media(max-width:360px){
+  body header.sgpr-shared-nav>a:not(.logo){font-size:10.5px!important;padding:0 2px!important}
+  .sgprp-hero h1{font-size:31px!important}
+  .sgprp-stat-grid strong{font-size:36px!important}
+}
+@media(max-width:480px){
+  .nv-grid{max-width:300px!important}
+}

@@ -1,0 +1,69 @@
+/* =========================================================
+   SGPR — Fluidité du défilement et des transitions
+   Chargé après les styles de chaque page : ne modifie ni
+   couleurs, ni tailles, ni positions. Affine uniquement le
+   rythme (courbes d'accélération) des transitions existantes.
+   ========================================================= */
+
+/* Défilement natif fluide (ancres incluses) */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+/* Supprime le délai de toucher sur mobile, sans bloquer le défilement */
+a,button,[role="button"],label,summary{touch-action:manipulation}
+
+/* Transition douce entre les pages (navigateurs compatibles uniquement,
+   ignorée ailleurs) : simple fondu, aucun déplacement */
+@view-transition{navigation:auto}
+::view-transition-old(root),
+::view-transition-new(root){animation-duration:.26s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+
+/* Apparitions existantes : même durée, même trajectoire,
+   décélération plus naturelle */
+.anim,.sgpr-anim{animation-timing-function:cubic-bezier(.22,.61,.36,1)}
+.sgprp-reveal{transition-timing-function:cubic-bezier(.22,.61,.36,1)!important}
+
+/* Carrousels existants : glissement plus souple, rendu sur GPU */
+.carousel-track,
+.brands-home-track{transition-timing-function:cubic-bezier(.25,.8,.25,1)!important;will-change:transform;backface-visibility:hidden}
+
+/* Navbar : changements d'état plus doux (mêmes couleurs) */
+body header.sgpr-shared-nav>a:not(.logo){transition:background-color .22s cubic-bezier(.4,0,.2,1),color .22s cubic-bezier(.4,0,.2,1)!important}
+body .sgpr-shared-topbar .devis{transition:background-color .22s cubic-bezier(.4,0,.2,1)!important}
+
+/* Mobile : la navbar défilante horizontalement reste fluide au doigt */
+@media(max-width:1000px){
+  body header.sgpr-shared-nav{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+}
+/* Apparition douce des textes, images et blocs au défilement.
+   Classes temporaires posées puis retirées par fluidite.js : à la fin,
+   chaque élément retrouve exactement ses propres styles. */
+.sx-hide{opacity:0!important;transform:translate3d(0,26px,0)!important}
+img.sx-hide,video.sx-hide,iframe.sx-hide{transform:translate3d(0,26px,0) scale(.985)!important}
+.sx-anim{transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1)!important}
+/* Images encore en chargement : fondu à l'arrivée */
+.sx-imgwait{opacity:0!important}
+.sx-imgin{transition:opacity .6s cubic-bezier(.4,0,.2,1)!important}
+
+/* Transitions douces par défaut pour les éléments interactifs qui n'en
+   avaient pas (:where = priorité nulle, les transitions existantes gardent la main) */
+:where(a,button,.dot,.arrow,.carousel-btn,.brands-home-arrow,input,textarea,select){
+  transition:color .25s cubic-bezier(.4,0,.2,1),background-color .25s cubic-bezier(.4,0,.2,1),
+    border-color .25s cubic-bezier(.4,0,.2,1),box-shadow .25s cubic-bezier(.4,0,.2,1),
+    opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1)
+}
+/* Respect de la préférence « réduire les animations » */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  @view-transition{navigation:none}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important
+  }
+}
+
+/* Logo de la navbar légèrement réduit */
+body header.sgpr-shared-nav .logo img{width:min(78%,300px)!important}
+@media(max-width:1000px){body header.sgpr-shared-nav .logo img{width:215px!important;max-width:215px!important}}
+@media(max-width:600px){body header.sgpr-shared-nav .logo img{width:140px!important;max-width:140px!important}}
