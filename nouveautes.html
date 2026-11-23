@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/sgpr-favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/sgpr-favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/sgpr-icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/sgpr-apple-touch-icon.png">
+<meta name="theme-color" content="#07074f">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nouveautés – SGPR</title>
+<meta name="description" content="Nouveautés SGPR : découvrez nos nouvelles roues pour chariots élévateurs en vidéo.">
+<style>
+:root{--navy:#0a0a5a;--grey:#787269;--red:#d0110f;--light:#f5f5f7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;display:flex;flex-direction:column;font-family:"Ubuntu","Segoe UI",Arial,sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.topbar{background:var(--grey);min-height:40px;display:flex;align-items:center;justify-content:space-between;padding-left:18%;font-size:14px;color:#fff}
+.topbar .infos{display:flex;gap:30px;flex-wrap:wrap}
+.topbar .devis{background:var(--navy);height:40px;padding:0 22px;display:flex;align-items:center;font-weight:700;margin-right:9%}
+.nav{height:76px;background:#fff;display:flex;align-items:center;padding-left:30%;position:relative;border-bottom:1px solid #eee}
+.nav a:not(.logo){padding:0 25px;font-weight:700;font-size:14px;color:var(--navy);text-transform:uppercase;height:76px;display:flex;align-items:center}
+
+.social-links{margin-left:auto;padding:0 30px 0 12px;display:flex;align-items:center;gap:7px;flex:0 0 auto}
+.social-link{width:34px;height:34px;padding:0!important;border:1.5px solid var(--navy);border-radius:6px;display:grid!important;place-items:center;color:var(--navy)!important;background:#fff;transition:background .2s ease,color .2s ease,transform .2s ease,border-color .2s ease}
+.social-link svg{width:17px;height:17px;display:block;fill:currentColor;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.social-link:hover,.social-link:focus-visible{background:var(--navy);color:#fff!important;border-color:var(--navy);transform:translateY(-2px)}
+
+/* Onglet actif : bloc bleu plein comme la référence */
+.nav a.active{
+  color:#fff!important;
+  background:var(--navy);
+  border:0;
+  border-radius:0;
+  padding:0 25px!important;
+  height:76px;
+  display:flex;
+  align-items:center;
+}
+.nav a.active:hover,.nav a.active:focus-visible{
+  color:#fff!important;
+  background:var(--navy);
+}
+
+.logo{position:absolute;left:0;top:0;width:28%;height:118px;background:#fff;display:flex;align-items:center;justify-content:center;z-index:2;clip-path:polygon(0 0,100% 0,100% 45%,88% 100%,0 100%)}
+.logo img{width:min(92%,360px);height:auto}
+
+.nv-page{padding:48px 5% 85px;min-height:620px}
+.nv-title{text-align:center;margin:0 auto 34px}
+.nv-title h1{color:var(--red);font-size:48px;font-weight:800;margin-bottom:18px}
+.nv-title .line{width:118px;height:5px;background:#555;margin:auto}
+.nv-product{max-width:1300px;margin:0 auto}
+.nv-head{max-width:820px;margin:0 auto 34px;text-align:center}
+.nv-head h2{color:var(--navy);font-size:28px;font-weight:800;margin-bottom:12px}
+.nv-head p{color:#555;font-size:16px;line-height:1.7}
+.nv-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;list-style:none}
+.nv-card{background:#fff;border:1px solid #e6e8ed;transition:border-color .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1)}
+.nv-card:hover{border-color:#cfd2dc;box-shadow:0 10px 26px rgba(10,10,90,.08)}
+.nv-card video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#030329;cursor:pointer}
+.nv-card video[controls]{cursor:auto}
+.nv-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1),border-color .3s ease,box-shadow .3s ease}
+.nv-reveal.nv-visible{opacity:1;transform:none}
+.nv-grid li:nth-child(2){transition-delay:.08s,.08s,0s,0s}.nv-grid li:nth-child(3){transition-delay:.16s,.16s,0s,0s}.nv-grid li:nth-child(4){transition-delay:.24s,.24s,0s,0s}.nv-grid li:nth-child(5){transition-delay:.32s,.32s,0s,0s}
+/* Galerie photos du nouveau produit */
+.nv-gallery{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:16px;margin:0 0 40px}
+.nv-photo{position:relative;margin:0;overflow:hidden;background:#eef0f4;border:1px solid #e6e8ed}
+.nv-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.nv-photo-main{grid-row:span 2}
+.nv-photo-main img{position:absolute;inset:0;height:100%;aspect-ratio:auto}
+.nv-photo:hover img{transform:scale(1.04)}
+.nv-gallery .nv-photo:nth-child(2){transition-delay:.08s,.08s,0s,0s}.nv-gallery .nv-photo:nth-child(3){transition-delay:.16s,.16s,0s,0s}.nv-gallery .nv-photo:nth-child(4){transition-delay:.24s,.24s,0s,0s}.nv-gallery .nv-photo:nth-child(5){transition-delay:.32s,.32s,0s,0s}
+@media(max-width:900px){
+  .nv-gallery{grid-template-columns:1fr 1fr;gap:12px}
+  .nv-photo-main{grid-column:1/-1;grid-row:auto}
+  .nv-photo-main{background:#e6e6e7}
+  .nv-photo-main img{position:static;aspect-ratio:4/3;object-fit:contain}
+}
+@media(max-width:480px){.nv-gallery{gap:8px;margin-bottom:28px}}
+.bottom-contact{max-width:1300px;margin:40px auto 0;padding:20px 23px;background:#fff;border:1px solid #e6e8ed;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.bottom-contact h2{font-size:17px;color:var(--navy);margin-bottom:4px}
+.bottom-contact p{font-size:13px;color:#6f7380;max-width:680px}
+.contact-cta{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:12px 15px;background:var(--navy);color:#fff;font-size:11px;font-weight:900;text-transform:uppercase;transition:background-color .22s cubic-bezier(.4,0,.2,1)}
+.contact-cta:hover,.contact-cta:focus-visible{background:var(--red)}
+@media(max-width:1100px){.nv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1000px){
+  .topbar{padding:8px 16px;gap:10px;align-items:flex-start}.topbar .infos{gap:8px;font-size:11px}.topbar .devis{margin-right:0;white-space:nowrap}
+  .nav{padding-left:0;height:auto;min-height:64px;overflow-x:auto}
+  .logo{position:relative;width:280px;min-width:280px;height:80px;clip-path:none}.logo img{width:250px}
+  .nav a:not(.logo){padding:0 18px;white-space:nowrap;height:64px}
+  .nav a.active{height:64px;padding:0 18px!important}
+}
+@media(max-width:700px){.nv-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.bottom-contact{flex-direction:column;align-items:flex-start;padding:18px}}
+@media(max-width:600px){.nv-page{padding:38px 4% 60px}.nv-title h1{font-size:36px}.nv-head h2{font-size:22px}.nv-head p{font-size:15px}}
+@media(max-width:480px){.nv-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
+@media(prefers-reduced-motion:reduce){.nv-reveal{opacity:1;transform:none}}
+
+/* Keep footer from previous design */
+footer{margin-top:auto;position:relative;background:#030329;min-height:110px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+footer:before{content:"";position:absolute;left:0;top:0;width:38%;height:70px;background:var(--light);clip-path:polygon(0 0,100% 0,84% 100%,0 100%)}
+footer div{position:relative;z-index:1;color:#fff;font-size:20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.anim{opacity:0;animation:fadeUp .7s ease forwards}.d1{animation-delay:.12s}.d2{animation-delay:.24s}
+.logo img{animation:fadeUp .7s ease both}
+
+@media(max-width:600px){
+  .social-link{width:30px;height:30px}.social-link svg{width:15px;height:15px}
+}
+</style>
+<style id="sgpr-unified-chrome">
+/* SGPR — en-tête et pied de page communs à toutes les pages */
+html{scroll-behavior:smooth}
+body{min-height:100vh;display:flex;flex-direction:column}
+body .sgpr-shared-topbar{background:#787269!important;color:#fff!important;width:100%!important;min-height:40px!important;height:40px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:0 7.4% 0 18%!important;font-family:"Ubuntu","Segoe UI",Arial,sans-serif!important;font-size:14px!important;line-height:1.3!important;position:relative!important;z-index:20!important}
+body .sgpr-shared-topbar .infos{display:flex!important;align-items:center!important;gap:30px!important;flex-wrap:wrap!important;font-size:14px!important;line-height:1.3!important;color:#fff!important}
+body .sgpr-shared-topbar .infos span{display:inline-block!important;white-space:nowrap!important}
+body .sgpr-shared-topbar .devis{background:#0a0a5a!important;color:#fff!important;height:40px!important;min-height:40px!important;padding:0 22px!important;margin:0!important;border:0!important;border-radius:0!important;display:flex!important;align-items:center!important;justify-content:center!important;font-weight:700!important;font-size:14px!important;line-height:1!important;white-space:nowrap!important;box-shadow:none!important;transform:none!important;transition:background .2s ease!important}
+body .sgpr-shared-topbar .devis:hover{background:#17177c!important;color:#fff!important}
+body header.sgpr-shared-nav{width:100%!important;height:76px!important;min-height:76px!important;max-height:76px!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:0!important;padding:0 0 0 30%!important;position:relative!important;top:auto!important;left:auto!important;right:auto!important;border:0!important;border-bottom:1px solid #eee!important;box-sizing:border-box!important;overflow:visible!important;z-index:15!important;flex:0 0 76px!important}
+body header.sgpr-shared-nav .logo{position:absolute!important;left:0!important;top:0!important;bottom:auto!important;width:28%!important;min-width:0!important;max-width:none!important;height:118px!important;min-height:118px!important;max-height:118px!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;z-index:3!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;clip-path:polygon(0 0,100% 0,100% 45%,88% 100%,0 100%)!important;flex:none!important}
+body header.sgpr-shared-nav .logo img{display:block!important;width:min(92%,360px)!important;max-width:none!important;min-width:0!important;height:auto!important;max-height:none!important;object-fit:contain!important;margin:0!important;padding:0!important;animation:fadeIn .7s ease both}
+body header.sgpr-shared-nav>a:not(.logo){height:76px!important;min-height:76px!important;max-height:76px!important;padding:0 25px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;box-sizing:border-box!important;border:0!important;border-radius:0!important;background:transparent!important;color:#0a0a5a!important;font-family:"Ubuntu","Segoe UI",Arial,sans-serif!important;font-size:14px!important;font-weight:700!important;line-height:1!important;letter-spacing:0!important;text-decoration:none!important;text-transform:uppercase!important;white-space:nowrap!important;transition:background .2s ease,color .2s ease!important}
+body header.sgpr-shared-nav>a:not(.logo):hover,body header.sgpr-shared-nav>a:not(.logo):focus-visible{background:#f1f2f6!important;color:#d0110f!important;outline-offset:-3px}
+body header.sgpr-shared-nav>a:not(.logo).active,body header.sgpr-shared-nav>a:not(.logo)[aria-current="page"]{background:#0a0a5a!important;color:#fff!important}
+body header.sgpr-shared-nav>a:not(.logo).active:hover,body header.sgpr-shared-nav>a:not(.logo)[aria-current="page"]:hover{background:#0a0a5a!important;color:#fff!important}
+body footer.sgpr-shared-footer{position:relative!important;isolation:isolate!important;flex:0 0 auto!important;width:100%!important;min-height:110px!important;height:auto!important;margin-top:auto!important;padding:22px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;overflow:hidden!important;background:#030329!important;color:#fff!important;border:0!important;font-family:"Ubuntu","Segoe UI",Arial,sans-serif!important}
+body footer.sgpr-shared-footer:before{content:""!important;position:absolute!important;left:0!important;top:0!important;width:38%!important;height:70px!important;background:#f5f5f7!important;clip-path:polygon(0 0,100% 0,84% 100%,0 100%)!important;pointer-events:none!important;z-index:-1!important}
+body footer.sgpr-shared-footer div{position:relative!important;z-index:1!important;color:#fff!important;font-size:20px!important;line-height:1.5!important;font-weight:400!important}
+@media(max-width:1000px){
+ body .sgpr-shared-topbar{height:auto!important;min-height:40px!important;padding:8px 16px!important;gap:10px!important;align-items:flex-start!important;font-size:11px!important;flex-wrap:wrap!important}
+ body .sgpr-shared-topbar .infos{gap:8px 16px!important;font-size:11px!important}
+ body .sgpr-shared-topbar .infos span{white-space:normal!important}
+ body .sgpr-shared-topbar .devis{margin-left:auto!important;height:40px!important;min-height:40px!important;font-size:11px!important}
+ body header.sgpr-shared-nav{padding:0!important;height:auto!important;min-height:64px!important;max-height:none!important;flex:0 0 auto!important;overflow-x:auto!important;overflow-y:hidden!important;justify-content:flex-start!important}
+ body header.sgpr-shared-nav .logo{position:relative!important;left:auto!important;top:auto!important;bottom:auto!important;width:280px!important;min-width:280px!important;height:80px!important;min-height:80px!important;max-height:80px!important;clip-path:none!important;flex:0 0 280px!important}
+ body header.sgpr-shared-nav .logo img{width:250px!important;max-width:250px!important}
+ body header.sgpr-shared-nav>a:not(.logo){height:64px!important;min-height:64px!important;max-height:64px!important;padding:0 18px!important;font-size:13px!important}
+}
+@media(max-width:600px){
+ body .sgpr-shared-topbar{flex-direction:column!important;align-items:flex-start!important;gap:7px!important;padding:9px 16px!important}
+ body .sgpr-shared-topbar .infos{gap:7px 12px!important}
+ body .sgpr-shared-topbar .devis{align-self:flex-end!important;margin-left:0!important}
+ body header.sgpr-shared-nav .logo{width:150px!important;min-width:150px!important;height:64px!important;min-height:64px!important;max-height:64px!important;flex:0 0 150px!important}
+ body header.sgpr-shared-nav .logo img{width:140px!important;max-width:140px!important}
+ body header.sgpr-shared-nav>a:not(.logo){padding:0 10px!important;font-size:10px!important}
+ body footer.sgpr-shared-footer{min-height:85px!important;padding:20px 15px!important}
+ body footer.sgpr-shared-footer:before{width:28%!important;height:35px!important}
+ body footer.sgpr-shared-footer div{font-size:15px!important}
+}
+</style>
+<link rel="stylesheet" href="assets/fluidite.css">
+<link rel="stylesheet" href="assets/footer.css">
+<link rel="stylesheet" href="assets/mobile.css">
+<script src="assets/fluidite.js" defer></script>
+</head>
+<body>
+<div class="topbar sgpr-shared-topbar">
+  <div class="infos">
+    <span>✉ sahbigharbi.gpr@gmail.com</span>
+    <span>✆ 55 000 748</span>
+    <span>⚲ 104 Av. de la République – Soliman</span>
+  </div>
+  <a href="devis.html" class="devis">DEMANDER UN DEVIS</a>
+</div>
+<header class="nav sgpr-shared-nav" aria-label="Navigation principale">
+  <a href="index.html" class="logo"><img src="assets/img/sgpr-logo.png" alt="SGPR" fetchpriority="high"></a>
+  <a href="index.html">Accueil</a>
+  <a href="marques.html">Marques</a>
+  <a href="nouveautes.html" class="active" aria-current="page">Nouveautés</a>
+  <a href="contact.html">Contact</a>
+</header>
+
+<main class="nv-page">
+  <div class="nv-title anim">
+    <h1>Nouveautés</h1>
+    <div class="line"></div>
+  </div>
+
+  <section class="nv-product" aria-labelledby="nv-product-title">
+    <div class="nv-head anim d1">
+      <h2 id="nv-product-title">Nouveau produit : Roues de chariots élévateurs</h2>
+      <p>Découvrez nos nouvelles roues pour chariots élévateurs, conçues pour répondre aux besoins des professionnels de la manutention. Contactez SGPR pour plus d'informations sur les modèles et les disponibilités.</p>
+    </div>
+
+    <div class="nv-gallery">
+      <figure class="nv-photo nv-photo-main nv-reveal"><img src="assets/nouveautes/roue-chariot-1.webp" width="1254" height="1254" alt="Roue pleine pour chariot élévateur" decoding="async" loading="lazy" decoding="async"></figure>
+      <figure class="nv-photo nv-reveal"><img src="assets/nouveautes/roue-chariot-2.webp" width="1536" height="1024" alt="Roue pleine montée sur un chariot élévateur" loading="lazy" decoding="async"></figure>
+      <figure class="nv-photo nv-reveal"><img src="assets/nouveautes/roue-chariot-3.webp" width="1536" height="1024" alt="Roue de chariot élévateur avec jante jaune" loading="lazy" decoding="async"></figure>
+      <figure class="nv-photo nv-reveal"><img src="assets/nouveautes/roue-chariot-4.webp" width="1536" height="1024" alt="Roue pleine à l'avant d'un chariot élévateur" loading="lazy" decoding="async"></figure>
+      <figure class="nv-photo nv-reveal"><img src="assets/nouveautes/roue-chariot-5.webp" width="1536" height="1024" alt="Roue pleine pour chariot élévateur dans un entrepôt" loading="lazy" decoding="async"></figure>
+    </div>
+
+    <ul class="nv-grid">
+      <li class="nv-card nv-reveal">
+        <video data-sgpr-video muted loop autoplay playsinline preload="metadata" width="576" height="1024" aria-label="Roues de chariots élévateurs – vidéo 1 sur 5">
+          <source src="assets/WhatsApp Video 2026-11-22 at 17.41.00.mp4" type="video/mp4">
+          Votre navigateur ne permet pas la lecture de cette vidéo.
+        </video>
+      </li>
+      <li class="nv-card nv-reveal">
+        <video data-sgpr-video muted loop autoplay playsinline preload="metadata" width="576" height="1024" aria-label="Roues de chariots élévateurs – vidéo 2 sur 5">
+          <source src="assets/WhatsApp Video 2026-11-22 at 17.41.03.mp4" type="video/mp4">
+          Votre navigateur ne permet pas la lecture de cette vidéo.
+        </video>
+      </li>
+      <li class="nv-card nv-reveal">
+        <video data-sgpr-video muted loop autoplay playsinline preload="metadata" width="576" height="1024" aria-label="Roues de chariots élévateurs – vidéo 3 sur 5">
+          <source src="assets/WhatsApp Video 2026-11-22 at 17.41.15.mp4" type="video/mp4">
+          Votre navigateur ne permet pas la lecture de cette vidéo.
+        </video>
+      </li>
+      <li class="nv-card nv-reveal">
+        <video data-sgpr-video muted loop autoplay playsinline preload="metadata" width="576" height="1024" aria-label="Roues de chariots élévateurs – vidéo 4 sur 5">
+          <source src="assets/WhatsApp Video 2026-11-22 at 17.41.18.mp4" type="video/mp4">
+          Votre navigateur ne permet pas la lecture de cette vidéo.
+        </video>
+      </li>
+      <li class="nv-card nv-reveal">
+        <video data-sgpr-video muted loop autoplay playsinline preload="metadata" width="464" height="832" aria-label="Roues de chariots élévateurs – vidéo 5 sur 5">
+          <source src="assets/WhatsApp Video 2026-11-22 at 17.41.27.mp4" type="video/mp4">
+          Votre navigateur ne permet pas la lecture de cette vidéo.
+        </video>
+      </li>
+    </ul>
+  </section>
+
+  <section class="bottom-contact anim d2">
+    <div>
+      <h2>Intéressé par nos roues de chariots élévateurs ?</h2>
+      <p>Contactez SGPR pour connaître les modèles et les disponibilités.</p>
+    </div>
+    <a class="contact-cta" href="contact.html">Nous contacter</a>
+  </section>
+</main>
+
+
+<footer class="sgpr-footer" aria-label="Pied de page">
+  <div class="sgpr-footer-inner">
+    <div>
+      <h3>SGPR</h3>
+      <p>Pièces de rechange pour camions, poids lourds et chariots élévateurs. Notre équipe vous accompagne à Soliman pour trouver la pièce adaptée à votre véhicule.</p>
+    </div>
+    <nav aria-label="Liens du pied de page">
+      <h3>Navigation</h3>
+      <ul class="sgpr-footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="marques.html">Marques</a></li>
+        <li><a href="nouveautes.html">Nouveautés</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="devis.html">Demander un devis</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h3>Contact</h3>
+      <ul class="sgpr-footer-contact">
+        <li><span aria-hidden="true">✉</span><a href="mailto:sahbigharbi.gpr@gmail.com">sahbigharbi.gpr@gmail.com</a></li>
+        <li><span aria-hidden="true">✆</span><a href="tel:+21655000748">55 000 748</a></li>
+        <li><span aria-hidden="true">⚲</span><span>104 Av. de la République – Soliman</span></li>
+      </ul>
+    </div>
+    <div class="sgpr-footer-cta">
+      <h3>Besoin d’une pièce ?</h3>
+      <p>Envoyez-nous la référence ou le modèle de votre véhicule, nous étudions votre demande.</p>
+      <a class="sgpr-footer-btn" href="devis.html">Demander un devis</a>
+    </div>
+  </div>
+  <div class="sgpr-footer-bottom">
+    <div class="sgpr-footer-bottom-inner">
+      <span>Copyright © 2026 | SGPR. Tous droits réservés.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
